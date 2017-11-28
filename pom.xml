@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>abstract-bot</artifactId>
-  <groupId>cz.jan.maly</groupId>
+  <groupId>aic.gas.abstract_bot</groupId>
   <version>0.1</version>
   <description>Module defining abstract structures for bot.</description>
 
