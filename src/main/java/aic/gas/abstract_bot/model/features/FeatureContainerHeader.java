@@ -9,7 +9,6 @@ import aic.gas.mas.model.metadata.containers.FactWithOptionalValueSets;
 import aic.gas.mas.model.metadata.containers.FactWithOptionalValueSetsForAgentType;
 import aic.gas.mas.model.metadata.containers.FactWithSetOfOptionalValues;
 import aic.gas.mas.model.metadata.containers.FactWithSetOfOptionalValuesForAgentType;
-import aic.gas.mas.utils.MyLogger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,12 +18,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Contains map of fact keys and their feature values to initialize various instances of
  * FeatureContainer types
  */
+@Slf4j
 @Getter
 public class FeatureContainerHeader {
 
@@ -145,7 +146,7 @@ public class FeatureContainerHeader {
   private void addIndexes(List<Integer> indexes, Set<Integer> indexesSet) {
     for (Integer integer : indexes) {
       if (indexesSet.contains(integer)) {
-        MyLogger.getLogger().warning("Found duplicity index.");
+        log.error("Found duplicity index.");
       }
       indexesSet.add(integer);
     }

@@ -1,11 +1,12 @@
 package aic.gas.abstract_bot.model.game.wrappers;
 
-import aic.gas.mas.utils.MyLogger;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Common parent for all type wrappers
  */
+@Slf4j
 abstract class AbstractWrapper<T> {
 
   @Getter
@@ -17,7 +18,7 @@ abstract class AbstractWrapper<T> {
   AbstractWrapper(T type, String name) {
     this.name = name;
     if (type == null) {
-      MyLogger.getLogger().warning("Constructor: type is null.");
+      log.error("Constructor: type is null.");
       throw new RuntimeException("Constructor: type is null.");
     }
     this.type = type;

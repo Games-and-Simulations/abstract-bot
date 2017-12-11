@@ -2,7 +2,6 @@ package aic.gas.abstract_bot.model.decision;
 
 import aic.gas.abstract_bot.model.features.FeatureNormalizer;
 import aic.gas.abstract_bot.utils.Configuration;
-import aic.gas.mas.utils.MyLogger;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -10,12 +9,14 @@ import java.util.stream.Collectors;
 import jsat.linear.DenseVector;
 import jsat.linear.Vec;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * DecisionPoint decide next action based on current state. It is initialized from
  * DecisionPointDataStructure
  */
 @Getter
+@Slf4j
 public class DecisionPoint {
 
   private final List<StateWithTransition> states;
@@ -37,7 +38,7 @@ public class DecisionPoint {
     Optional<StateWithTransition> closestState = states.stream()
         .min(Comparator.comparingDouble(o -> o.distance(anotherInstance)));
     if (!closestState.isPresent()) {
-      MyLogger.getLogger().warning("No state is present.");
+      log.error("No state is present.");
       return false;
     }
     return closestState.get().nextAction.commit();

@@ -5,7 +5,6 @@ import aic.gas.abstract_bot.model.bot.DesireKeys;
 import aic.gas.abstract_bot.model.features.FeatureNormalizer;
 import aic.gas.mas.model.metadata.AgentTypeID;
 import aic.gas.mas.model.metadata.DesireKeyID;
-import aic.gas.mas.utils.MyLogger;
 import java.io.File;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -16,10 +15,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import jsat.linear.distancemetrics.DistanceMetric;
 import jsat.linear.distancemetrics.EuclideanDistance;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Contains configuration...
  */
+@Slf4j
 public class Configuration {
 
   public static final DistanceMetric DISTANCE_FUNCTION = new EuclideanDistance();
@@ -60,7 +61,7 @@ public class Configuration {
               try {
                 return (AgentTypeID) field.get(null);
               } catch (IllegalAccessException e) {
-                MyLogger.getLogger().warning(e.getLocalizedMessage());
+                log.error(e.getLocalizedMessage());
               }
               return null;
             }
@@ -88,7 +89,7 @@ public class Configuration {
               try {
                 return (DesireKeyID) field.get(null);
               } catch (IllegalAccessException e) {
-                MyLogger.getLogger().warning(e.getLocalizedMessage());
+                log.error(e.getLocalizedMessage());
               }
               return null;
             }
